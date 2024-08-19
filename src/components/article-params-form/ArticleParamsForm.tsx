@@ -14,6 +14,7 @@ import {
 	fontSizeOptions,
 	ArticleStateType,
 	OptionType,
+	defaultArticleState,
 } from 'src/constants/articleProps';
 
 import clsx from 'clsx';
@@ -56,15 +57,15 @@ export const FormClose = (props: TFormClose) => {
 };
 
 type ArticleParamsFormProps = {
-	defaultArticleState: ArticleStateType;
-	setDefaultArticleState: (date: ArticleStateType) => void;
+	defaultArticle: ArticleStateType;
+	setDefaultArticle: (date: ArticleStateType) => void;
 };
 
 export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
-	const { defaultArticleState, setDefaultArticleState } = props;
+	const { defaultArticle, setDefaultArticle } = props;
 
 	const [isActive, setIsActive] = useState(false);
-	const [articleState, setArticleState] = useState(defaultArticleState);
+	const [articleState, setArticleState] = useState(defaultArticle);
 	const ref = useRef<HTMLFormElement | null>(null);
 
 	FormClose({
@@ -95,12 +96,12 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 
 	function submitForm(event: FormEvent) {
 		event.preventDefault();
-		setDefaultArticleState(articleState);
+		setDefaultArticle(articleState);
 	}
 
 	function resetForm() {
 		setArticleState(defaultArticleState);
-		setDefaultArticleState(defaultArticleState);
+		setDefaultArticle(defaultArticleState);
 	}
 
 	function toggleForm() {
